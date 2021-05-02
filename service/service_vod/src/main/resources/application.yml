@@ -1,0 +1,15 @@
+# 服务端口
+server:
+  port: 8003
+  # 服务名
+
+
+
+  #阿里云 vod
+  #不同的服务器，地址不同
+aliyun:
+  vod:
+   file:
+     keyid: LTAI4G2Ef8mvAuLLaHqhmuyC
+     keysecret: FovwHOANrKGUuJzHmY6b1k5inRNKDh
+

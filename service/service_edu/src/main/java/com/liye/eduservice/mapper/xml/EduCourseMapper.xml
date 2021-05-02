@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.liye.eduservice.mapper.EduCourseMapper">
+
+    <select id="getPublishCourseInfo" parameterType="String" resultType="com.liye.eduservice.entity.vo.CoursePublishVo">
+        SELECT  ec.id,ec.title,ec.cover,
+        	es.title as subjectTitle,
+        	pf.title as professionalTitle,
+        	et.name as teacherName,
+        	et.avatar as teacherAvatar
+	   		FROM edu_course ec
+			LEFT OUTER JOIN edu_teacher et ON ec.teacher_id=et.id
+			LEFT OUTER JOIN professional pf ON pf.id=ec.professional_id
+			LEFT OUTER JOIN edu_subject es ON es.id=ec.subject_id
+			WHERE ec.id= #{courseId}
+    </select>
+
+</mapper>

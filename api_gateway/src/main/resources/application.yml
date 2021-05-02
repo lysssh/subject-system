@@ -1,0 +1,59 @@
+# 服务端口
+server:
+  port: 8222
+
+#服务名称
+spring:
+  application:
+    name: service-gateway
+  redis:
+    host: 123.56.126.244
+    port: 6379
+    database: 1
+    timeout: 1800000
+    lettuce:
+      pool:
+        max-active: 20
+        max-idle: 5
+        max-wait: -1
+        min-idle: 0
+    password:
+  cloud:
+    #nacos地址配置
+    nacos:
+      discovery:
+        server-addr: 123.56.126.244:8848
+    #使用服务器发现路由
+    gateway:
+      discovery:
+        locator:
+          enabled: true
+      routes:
+        - id: service-edu
+          uri: http://localhost:8001
+          predicates:
+          - Path=/eduservice/**
+        - id: service-oss
+          uri: http://localhost:8002
+          predicates:
+          - Path=/eduoss/**
+        - id: service-vod
+          uri: http://localhost:8003
+          predicates:
+          - Path=/eduvod/**
+        - id: service-cms
+          uri: http://localhost:8004
+          predicates:
+          - Path=/educms/**
+#        - id: service-msm
+#          uri: http://localhost:8005
+#          predicates:
+#          - Path=/edumsm/**
+        - id: service-ucenter
+          uri: http://localhost:8006
+          predicates:
+          - Path=/ucenterservice/**
+        - id: service-acl
+          uri: http://localhost:8009
+          predicates:
+          - Path=/admin/acl/**
