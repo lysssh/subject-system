@@ -41,6 +41,8 @@ public class AuthGlobalFilter implements GlobalFilter, Ordered {
     @Autowired
     private RedisTemplate<String,String> redisTemplate;
 
+    int j = 0;
+
     @Autowired
     private TokenManager tokenManager;
     
