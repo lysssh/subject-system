@@ -43,6 +43,9 @@ public class AuthGlobalFilter implements GlobalFilter, Ordered {
 
     @Autowired
     private TokenManager tokenManager;
+    
+    
+    int i= 0;
 
     @Override
     public Mono<Void> filter(ServerWebExchange exchange, GatewayFilterChain chain) {
