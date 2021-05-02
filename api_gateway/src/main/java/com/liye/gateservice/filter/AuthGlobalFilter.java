@@ -43,12 +43,10 @@ public class AuthGlobalFilter implements GlobalFilter, Ordered {
 
     int j = 0;
     int n=0;
+    int m = 0;
 
     @Autowired
     private TokenManager tokenManager;
-    
-    
-    int i= 0;
 
     @Override
     public Mono<Void> filter(ServerWebExchange exchange, GatewayFilterChain chain) {
