@@ -21,7 +21,7 @@ public interface EduSubjectService extends IService<EduSubject> {
 
     List<OneSubject> getAllOneTwoSubject();
 
-    void saveSubject(MultipartFile file, EduSubjectService eduSubjectService);
+
 
     R gettAllSubject(Long current, Long limit);
 }

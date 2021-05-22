@@ -6,6 +6,7 @@ import com.liye.commonutils.R;
 import com.liye.eduservice.entity.EduSubject;
 import com.liye.eduservice.entity.PathMessage;
 import com.liye.eduservice.entity.vo.PathMessageVo;
+import com.liye.eduservice.service.EduSubjectService;
 import com.liye.eduservice.service.PathMessageService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
@@ -27,6 +28,9 @@ public class PathMessageController {
     @Autowired
     private PathMessageService pathMessageService;
 
+    @Autowired
+    private EduSubjectService subjectService;
+
 
     @GetMapping("findPath/{id}")
     public R findPath(@PathVariable String id) {
@@ -45,6 +49,8 @@ public class PathMessageController {
 
     @PostMapping("add")
     public R add(@RequestBody PathMessage pathMessage) {
+        EduSubject byId = subjectService.getById(pathMessage.getSubjectId());
+        pathMessage.setSubjectTitle(byId.getTitle());
         boolean save = pathMessageService.save(pathMessage);
         if(save) {
             return R.ok();
@@ -63,6 +69,8 @@ public class PathMessageController {
 
     @PostMapping("update")
     public R update(@RequestBody PathMessage pathMessage) {
+        EduSubject byId = subjectService.getById(pathMessage.getSubjectId());
+        pathMessage.setSubjectTitle(byId.getTitle());
         boolean b = pathMessageService.updateById(pathMessage);
         if(b) {
             return R.ok();

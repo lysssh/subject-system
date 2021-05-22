@@ -9,8 +9,8 @@ aliyun:
   oss:
    file:
      endpoint: oss-cn-beijing.aliyuncs.com
-     keyid: LTAI4G2Ef8mvAuLLaHqhmuyC
-     keysecret: FovwHOANrKGUuJzHmY6b1k5inRNKDh
+     keyid: LTAI5tMUx1UayQB6TD1hy5x8
+     keysecret: nHT2yTCkdszdr1HZuMV7d85fOBPFZF
      bucketname: edu-gulioarent   #bucket可以在控制台创建，也可以使用java代码创建
 #     urlPrefix: https://edu-gulioarent.oss-cn-beijing.aliyuncs.com
 

@@ -6,8 +6,10 @@ import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import com.liye.commonutils.R;
 import com.liye.eduservice.entity.EduSubject;
 import com.liye.eduservice.entity.EduTeacher;
+import com.liye.eduservice.entity.Professional;
 import com.liye.eduservice.entity.subject.OneSubject;
 import com.liye.eduservice.service.EduSubjectService;
+import com.liye.eduservice.service.ProfessionalService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 import org.springframework.web.bind.annotation.*;
@@ -31,19 +33,8 @@ public class EduSubjectController {
     @Autowired
     private EduSubjectService eduSubjectService;
 
-    //添加课程分类
-    /**
-     * 1.获取上传文件,读取内容
-     * */
-
-    @PostMapping("addSubject")
-    public R addSubject(MultipartFile file) {
-
-        //上传过来的数据
-        eduSubjectService.saveSubject(file,eduSubjectService);
-        return R.ok();
-
-    }
+    @Autowired
+    private ProfessionalService professionalService;
 
     //添加课程分类
     @PostMapping("insertSubject")
@@ -101,6 +92,10 @@ public class EduSubjectController {
         eduSubjectService.page(page,null);
         long total=page.getTotal();//总记录数
         List<EduSubject> list=page.getRecords();
+        for(int i=0;i<list.size();i++) {
+            Professional byId = professionalService.getById(list.get(i).getProfessionalId());
+            list.get(i).setProfessionalTitle(byId.getTitle());
+        }
         return R.ok().data("total",total).data("items",list);
     }
 

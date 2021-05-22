@@ -1,7 +1,6 @@
 # 服务端口
 server:
   port: 8222
-
 #服务名称
 spring:
   application:

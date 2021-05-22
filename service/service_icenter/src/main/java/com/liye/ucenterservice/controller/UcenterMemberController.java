@@ -1,7 +1,9 @@
 package com.liye.ucenterservice.controller;
 
 
+import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
 import com.liye.commonutils.JwtUtils;
+import com.liye.commonutils.MD5;
 import com.liye.commonutils.R;
 import com.liye.ucenterservice.entity.UcenterMember;
 import com.liye.ucenterservice.entity.vo.RegisterVo;
@@ -64,5 +66,28 @@ public class UcenterMemberController {
         }
         return R.error();
     }
+
+    @GetMapping("findByPhone/{phone}")
+    public R findByPhone(@PathVariable String phone) {
+        QueryWrapper<UcenterMember> wrapper = new QueryWrapper<>();
+        wrapper.eq("mobile",phone);
+        int count = memberService.count(wrapper);
+        return R.ok().data("count",count);
+    }
+
+    //修改密码
+    @GetMapping("updatePassword/{phone}/{password}")
+    public R updatePassword(@PathVariable("phone") String phone,
+                            @PathVariable("password") String password) {
+
+        QueryWrapper<UcenterMember> wrapper = new QueryWrapper<>();
+        wrapper.eq("mobile",phone);
+        UcenterMember one = memberService.getOne(wrapper);
+        String encrypt = MD5.encrypt(password);
+        one.setPassword(encrypt);
+        boolean b = memberService.updateById(one);
+        return R.ok().data("flag",b);
+    }
+
 }
 

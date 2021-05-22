@@ -41,17 +41,7 @@ public class EduSubjectServiceImpl extends ServiceImpl<EduSubjectMapper, EduSubj
     private ProfessionalService professionalService;
 
 
-    //添加课程分类
-    @Override
-    public void saveSubject(MultipartFile file,EduSubjectService eduSubjectService) {
-        try {
-            InputStream in=file.getInputStream();
-            EasyExcel.read(in, SubjectData.class, new SubjectExcelListener(eduSubjectService)).sheet().doRead();
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
 
-    }
 
     public List<OneSubject> getAllOneTwoSubject() {
 

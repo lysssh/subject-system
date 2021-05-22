@@ -37,12 +37,8 @@ public class PathMessage implements Serializable {
     @ApiModelProperty(value = "科目id")
     private String subjectId;
 
-    @ApiModelProperty(value = "排序字段")
-    private Integer sort;
-
-    @ApiModelProperty(value = "逻辑删除 1（true）已删除， 0（false）未删除")
-    @TableLogic   //逻辑删除开启注解
-    private Integer isDeleted;
+    @ApiModelProperty(value = "科目标题")
+    private String subjectTitle;
 
     @ApiModelProperty(value = "创建时间")
     @TableField(fill = FieldFill.INSERT)

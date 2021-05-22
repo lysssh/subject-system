@@ -63,17 +63,17 @@ public class JwtUtils {
      * @param request
      * @return
      */
-    public static boolean checkToken(HttpServletRequest request) {
-        try {
-            String jwtToken = request.getHeader("token");
-            if(StringUtils.isEmpty(jwtToken)) return false;
-            Jwts.parser().setSigningKey(APP_SECRET).parseClaimsJws(jwtToken);
-        } catch (Exception e) {
-            e.printStackTrace();
-            return false;
-        }
-        return true;
-    }
+//    public static boolean checkToken(HttpServletRequest request) {
+//        try {
+//            String jwtToken = request.getHeader("token");
+//            if(StringUtils.isEmpty(jwtToken)) return false;
+//            Jwts.parser().setSigningKey(APP_SECRET).parseClaimsJws(jwtToken);
+//        } catch (Exception e) {
+//            e.printStackTrace();
+//            return false;
+//        }
+//        return true;
+//    }
 
     /**
      * 根据token获取会员id

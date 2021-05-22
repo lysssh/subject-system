@@ -2,6 +2,8 @@ package com.liye.eduservice.entity;
 
 import com.baomidou.mybatisplus.annotation.FieldFill;
 import com.baomidou.mybatisplus.annotation.IdType;
+
+import java.time.Year;
 import java.util.Date;
 
 import com.baomidou.mybatisplus.annotation.TableField;
@@ -15,36 +17,34 @@ import lombok.experimental.Accessors;
 
 /**
  * <p>
- * 课程科目
+ * 就业去向
  * </p>
  *
  * @author testjava
- * @since 2021-03-12
+ * @since 2021-05-06
  */
 @Data
 @EqualsAndHashCode(callSuper = false)
 @Accessors(chain = true)
-@ApiModel(value="EduSubject对象", description="课程科目")
-public class EduSubject implements Serializable {
+@ApiModel(value="Employment对象", description="就业去向")
+public class Employment implements Serializable {
 
     private static final long serialVersionUID = 1L;
 
-    @ApiModelProperty(value = "ID")
+    @ApiModelProperty(value = "编号")
     @TableId(value = "id", type = IdType.ID_WORKER_STR)
     private String id;
 
-    @ApiModelProperty(value = "科目名称")
-    private String title;
+    @ApiModelProperty(value = "所属路线")
+    private String pathId;
 
-    @ApiModelProperty(value = "专业ID")
-    private String professionalId;
+    @ApiModelProperty(value = "年份")
+    private Year year;
 
-    @TableField(exist = false)
-    private String professionalTitle;
-
-
-    @ApiModelProperty(value = "排序字段")
-    private Integer sort;
+    @ApiModelProperty(value = "图片地址")
+    private String url;
+    @ApiModelProperty(value = "详情")
+    private String details;
 
     @ApiModelProperty(value = "创建时间")
     @TableField(fill = FieldFill.INSERT)

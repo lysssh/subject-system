@@ -7,6 +7,7 @@ import com.liye.eduservice.entity.EduVideo;
 import com.liye.eduservice.mapper.EduVideoMapper;
 import com.liye.eduservice.service.EduVideoService;
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
+import javafx.scene.effect.Light;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.util.StringUtils;
@@ -34,7 +35,6 @@ public class EduVideoServiceImpl extends ServiceImpl<EduVideoMapper, EduVideo> i
 
         QueryWrapper<EduVideo> wrapperVideo = new QueryWrapper<>();
         wrapperVideo.eq("course_id",courseId);
-        wrapperVideo.select("video_source_id");
         List<EduVideo> eduVideos = baseMapper.selectList(wrapperVideo);
 
         List<String> list = new ArrayList<>();
@@ -43,6 +43,7 @@ public class EduVideoServiceImpl extends ServiceImpl<EduVideoMapper, EduVideo> i
                 list.add(eduVideos.get(i).getVideoSourceId());
             }
         }
+        
         if(list.size()!=0) {
             vodClient.removeByCourseId(list);
         }

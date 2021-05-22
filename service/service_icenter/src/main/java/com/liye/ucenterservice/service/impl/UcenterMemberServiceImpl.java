@@ -111,7 +111,6 @@ public class UcenterMemberServiceImpl extends ServiceImpl<UcenterMemberMapper, U
         //登录成功
         //生成token字符串，使用jwt工具类
         String jwtToken = JwtUtils.getJwtToken(mobileMember.getId(), mobileMember.getNickname());
-        redisTemplate.opsForValue().set(mobile,jwtToken,5, TimeUnit.MINUTES);
         return R.ok().data("token",jwtToken);
     }
 }

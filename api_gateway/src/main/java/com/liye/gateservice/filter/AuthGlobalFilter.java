@@ -11,18 +11,14 @@ import org.springframework.cloud.gateway.filter.GlobalFilter;
 import org.springframework.core.Ordered;
 import org.springframework.core.io.buffer.DataBuffer;
 import org.springframework.data.redis.core.RedisTemplate;
-import org.springframework.data.redis.core.SetOperations;
 import org.springframework.http.server.reactive.ServerHttpRequest;
 import org.springframework.http.server.reactive.ServerHttpResponse;
 import org.springframework.stereotype.Component;
 import org.springframework.util.AntPathMatcher;
-import org.springframework.util.StringUtils;
 import org.springframework.web.server.ServerWebExchange;
 import reactor.core.publisher.Mono;
 
-import javax.annotation.Resource;
 import java.nio.charset.StandardCharsets;
-import java.util.List;
 
 /**
  * <p>
@@ -44,25 +40,20 @@ public class AuthGlobalFilter implements GlobalFilter, Ordered {
 
     @Autowired
     private TokenManager tokenManager;
-    
-    int a = 0;
 
     @Override
     public Mono<Void> filter(ServerWebExchange exchange, GatewayFilterChain chain) {
         ServerHttpRequest request = exchange.getRequest();
         String path = request.getURI().getPath();
-        //谷粒学院api接口，校验用户必须登录
+        //校验用户必须登录
         if(antPathMatcher.match("/eduservice/**", path)||
                 antPathMatcher.match("/eduoss/**", path)||
                 antPathMatcher.match("/eduvod/**", path)||
                 antPathMatcher.match("/educms/**", path)||
                 antPathMatcher.match("/ucenterservice/edu-course-collect/**", path)) {
             String tokenList = request.getHeaders().get("token").get(0);
-            System.out.println(request.getHeaders().get("token"));
             if(terminalJudgment.isMobileDevice(request)) {
-                String phone = request.getHeaders().get("phone").get(0);
-                String redisToken = redisTemplate.opsForValue().get(phone);
-                if(null == tokenList || !tokenList.contains(redisToken)) {
+                if(null == tokenList || !JwtUtils.checkToken(tokenList)) {
                     ServerHttpResponse response = exchange.getResponse();
                     return out(response);
                 }

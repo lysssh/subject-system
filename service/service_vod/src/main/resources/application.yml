@@ -10,6 +10,6 @@ server:
 aliyun:
   vod:
    file:
-     keyid: LTAI4G2Ef8mvAuLLaHqhmuyC
-     keysecret: FovwHOANrKGUuJzHmY6b1k5inRNKDh
+     keyid: LTAI5tMUx1UayQB6TD1hy5x8
+     keysecret: nHT2yTCkdszdr1HZuMV7d85fOBPFZF
 

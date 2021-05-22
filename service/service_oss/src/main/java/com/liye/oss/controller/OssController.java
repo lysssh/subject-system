@@ -27,7 +27,6 @@ public class OssController {
      */
     @PostMapping
     public R uploadOssFile(MultipartFile file) throws FileNotFoundException {
-
         String url=ossService.uploadFileAvatar(file);
 
         return R.ok().data("url",url);

@@ -5,9 +5,11 @@ import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
 import com.baomidou.mybatisplus.core.metadata.IPage;
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import com.liye.commonutils.R;
+import com.liye.eduservice.entity.Employment;
 import com.liye.eduservice.entity.LearningPath;
 import com.liye.eduservice.entity.PathMessage;
 import com.liye.eduservice.entity.Professional;
+import com.liye.eduservice.service.EmploymentService;
 import com.liye.eduservice.service.LearningPathService;
 import com.liye.eduservice.service.PathMessageService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -34,6 +36,9 @@ public class LearningPathController {
     @Autowired
     private PathMessageService pathMessageService;
 
+    @Autowired
+    private EmploymentService employmentService;
+
     //根据id查询
     @GetMapping("findById/{id}")
     public R findById(@PathVariable String id) {
@@ -51,7 +56,7 @@ public class LearningPathController {
     public R addLearnPath(@RequestBody LearningPath learningPath) {
         boolean save = learningPathService.save(learningPath);
         if(save) {
-            return R.ok().data("learnPath",learningPath);
+            return R.ok().data("id",learningPath.getId());
         }
         return R.error();
     }
@@ -72,15 +77,23 @@ public class LearningPathController {
         wrapper.eq("path_id",id);
 
         List<PathMessage> list = pathMessageService.list(wrapper);
-        List<String> ids = new ArrayList<>();
         for(int i=0;i<list.size();i++) {
-            ids.add(list.get(i).getId());
+            boolean b1 = pathMessageService.removeById(list.get(i).getId());
+            if(!b1) {
+                return R.error().data("error","路线信息删除失败");
+            }
+        }
+        QueryWrapper<Employment> queryWrapper = new QueryWrapper<>();
+        queryWrapper.select("id");
+        queryWrapper.eq("path_id",id);
+        List<Employment> list1 = employmentService.list(queryWrapper);
+        for(int i=0;i<list1.size();i++) {
+            boolean b = employmentService.removeById(list1.get(i).getId());
+            if(!b) {
+                return R.error().data("error","路线信息删除失败");
+            }
         }
 
-        boolean b1 = pathMessageService.removeByIds(ids);
-        if(!b1) {
-            return R.error().data("error","路线信息删除失败");
-        }
         boolean b = learningPathService.removeById(id);
         if(b) {
             return R.ok();
