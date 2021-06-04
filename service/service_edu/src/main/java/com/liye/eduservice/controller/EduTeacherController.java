@@ -143,5 +143,17 @@ public class EduTeacherController {
         List<EduTeacher> list = teacherService.list(wrapper);
         return R.ok().data("list",list);
     }
+
+
+    @GetMapping("collectTeacher/{id}")
+    public R collectTeacher(@PathVariable("id") String id) {
+        EduTeacher byId = teacherService.getById(id);
+        byId.setSort(byId.getSort()+1);
+        boolean b = teacherService.updateById(byId);
+        if(b) {
+            return R.ok();
+        }
+        return R.error();
+    }
 }
 

@@ -35,7 +35,7 @@ public class AuthGlobalFilter implements GlobalFilter, Ordered {
     private AntPathMatcher antPathMatcher = new AntPathMatcher();
 
     @Autowired
-    private RedisTemplate<String,String> redisTemplate;
+    private RedisTemplate<String, String> redisTemplate;
 
 
     @Autowired
@@ -46,21 +46,21 @@ public class AuthGlobalFilter implements GlobalFilter, Ordered {
         ServerHttpRequest request = exchange.getRequest();
         String path = request.getURI().getPath();
         //校验用户必须登录
-        if(antPathMatcher.match("/eduservice/**", path)||
-                antPathMatcher.match("/eduoss/**", path)||
-                antPathMatcher.match("/eduvod/**", path)||
-                antPathMatcher.match("/educms/**", path)||
+        if (antPathMatcher.match("/eduservice/**", path) ||
+                antPathMatcher.match("/eduoss/**", path) ||
+                antPathMatcher.match("/eduvod/**", path) ||
+                antPathMatcher.match("/educms/**", path) ||
                 antPathMatcher.match("/ucenterservice/edu-course-collect/**", path)) {
             String tokenList = request.getHeaders().get("token").get(0);
-            if(terminalJudgment.isMobileDevice(request)) {
-                if(null == tokenList || !JwtUtils.checkToken(tokenList)) {
+            if (terminalJudgment.isMobileDevice(request)) {
+                if (null == tokenList || !JwtUtils.checkToken(tokenList)) {
                     ServerHttpResponse response = exchange.getResponse();
                     return out(response);
                 }
-            }else {
+            } else {
                 String userName = tokenManager.getUserFromToken(tokenList);
                 String redisToken = redisTemplate.opsForValue().get(userName);
-                if(null == tokenList || redisToken==null ) {
+                if (null == tokenList || redisToken == null) {
                     ServerHttpResponse response = exchange.getResponse();
                     return out(response);
                 }
@@ -68,7 +68,7 @@ public class AuthGlobalFilter implements GlobalFilter, Ordered {
 
         }
         //内部服务接口，不允许外部访问
-        if(antPathMatcher.match("/**/inner/**", path)) {
+        if (antPathMatcher.match("/**/inner/**", path)) {
             ServerHttpResponse response = exchange.getResponse();
             return out(response);
         }

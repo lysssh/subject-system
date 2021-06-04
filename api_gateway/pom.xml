@@ -38,7 +38,12 @@
             <groupId>com.google.code.gson</groupId>
             <artifactId>gson</artifactId>
         </dependency>
-<!--        <dependency>-->
+        <dependency>
+            <groupId>org.projectlombok</groupId>
+            <artifactId>lombok</artifactId>
+            <scope>test</scope>
+        </dependency>
+        <!--        <dependency>-->
 <!--            <groupId>org.apache.tomcat.embed</groupId>-->
 <!--            <artifactId>tomcat-embed-core</artifactId>-->
 <!--        </dependency>-->

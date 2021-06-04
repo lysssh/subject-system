@@ -9,10 +9,7 @@ import com.liye.eduservice.service.EduCourseService;
 import com.liye.eduservice.service.EduTeacherService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.cache.annotation.Cacheable;
-import org.springframework.web.bind.annotation.CrossOrigin;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
@@ -47,5 +44,11 @@ public class IndexFrontController {
         wrapperTeacher.last("limit 8");
         List<EduTeacher> teacherList = teacherService.list(wrapperTeacher);
         return R.ok().data("teacherList",teacherList);
+    }
+
+    @RequestMapping(value = "test",method = {RequestMethod.GET,RequestMethod.POST})
+    public String test(@RequestBody String test) {
+        System.out.println(test);
+        return test;
     }
 }

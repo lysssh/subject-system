@@ -11,6 +11,9 @@ import com.baomidou.mybatisplus.generator.config.rules.DateType;
 import com.baomidou.mybatisplus.generator.config.rules.NamingStrategy;
 import org.junit.Test;
 
+import java.util.ArrayList;
+import java.util.List;
+
 /**
  * @author ly
  * @project_name subject-system
@@ -79,5 +82,19 @@ public class CodeGenerntor {
 
         // 6、执行
         mpg.execute();
+    }
+
+    @Test
+    public void test2() {
+        List<String> list = new ArrayList<>();
+        list.add(1+"");
+        list.add(2+"");
+        list.add(3+"");
+        list.add(4+"");
+        list.add(5+"");list.add(6+"");
+        list.remove(0);
+        System.out.println(list.size());
+        System.out.println(list.get(0));
+
     }
 }

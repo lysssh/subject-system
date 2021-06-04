@@ -14,8 +14,8 @@ import java.util.List;
 
 public class TestVod {
 
-    private static final String accessKeyId = "LTAI4G2Ef8mvAuLLaHqhmuyC";
-    private static final String accessKeySecret = "FovwHOANrKGUuJzHmY6b1k5inRNKDh";
+    private static final String accessKeyId = "LTAI5tMUx1UayQB6TD1hy5x8";
+    private static final String accessKeySecret = "nHT2yTCkdszdr1HZuMV7d85fOBPFZF";
     public static void main(String[] args) throws Exception {
         TestVod.getPlayUrl();
     }
@@ -28,7 +28,7 @@ public class TestVod {
         GetVideoPlayAuthRequest request = new GetVideoPlayAuthRequest();
         GetVideoPlayAuthResponse response = new GetVideoPlayAuthResponse();
 
-        request.setVideoId("5336505c031346559c76034cdb3703b4");
+        request.setVideoId("326180ab60ef48288ed7a6a2b476a014");
 
         response = client.getAcsResponse(request);
         System.out.println("playAuth:"+response.getPlayAuth());
@@ -43,7 +43,7 @@ public class TestVod {
         GetPlayInfoResponse response = new GetPlayInfoResponse();
 
         //向request对象里面设置视频id
-        request.setVideoId("c7028a1f64f34b66ac538fcaec7dbf8d");
+        request.setVideoId("326180ab60ef48288ed7a6a2b476a014");
 
         //调用初始化对象里面的方法，传递request，获取数据
         response = client.getAcsResponse(request);

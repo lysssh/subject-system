@@ -29,30 +29,26 @@ spring:
           enabled: true
       routes:
         - id: service-edu
-          uri: http://localhost:8001
+          uri: lb://service-edu
           predicates:
-          - Path=/eduservice/**
+            - Path=/eduservice/**
         - id: service-oss
-          uri: http://localhost:8002
+          uri: lb://service-oss
           predicates:
-          - Path=/eduoss/**
+            - Path=/eduoss/**
         - id: service-vod
-          uri: http://localhost:8003
+          uri: lb://service-vod
           predicates:
-          - Path=/eduvod/**
+            - Path=/eduvod/**
         - id: service-cms
-          uri: http://localhost:8004
+          uri: lb://service-cms
           predicates:
-          - Path=/educms/**
-#        - id: service-msm
-#          uri: http://localhost:8005
-#          predicates:
-#          - Path=/edumsm/**
+            - Path=/educms/**
         - id: service-ucenter
-          uri: http://localhost:8006
+          uri: lb://service-ucenter
           predicates:
-          - Path=/ucenterservice/**
+            - Path=/ucenterservice/**
         - id: service-acl
           uri: http://localhost:8009
           predicates:
-          - Path=/admin/acl/**
+            - Path=/admin/acl/**

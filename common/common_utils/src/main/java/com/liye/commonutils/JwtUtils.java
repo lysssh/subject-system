@@ -19,8 +19,7 @@ public class JwtUtils {
     public static final String APP_SECRET = "ukc8BDbRigUDaY6pZFfWus2jZWLPHO"; //密钥，可以随便写
 
     //生成token字符串
-    public static String getJwtToken(String id, String nickname){
-
+    public static String getJwtToken(String id, String nickname) {
         String JwtToken = Jwts.builder()
                 //设置jwt头信息
                 .setHeaderParam("typ", "JWT")
@@ -44,11 +43,12 @@ public class JwtUtils {
 
     /**
      * 判断token是否存在与有效
+     *
      * @param jwtToken
      * @return
      */
     public static boolean checkToken(String jwtToken) {
-        if(StringUtils.isEmpty(jwtToken)) return false;
+        if (StringUtils.isEmpty(jwtToken)) return false;
         try {
             Jwts.parser().setSigningKey(APP_SECRET).parseClaimsJws(jwtToken);
         } catch (Exception e) {
@@ -77,26 +77,28 @@ public class JwtUtils {
 
     /**
      * 根据token获取会员id
+     *
      * @param request
      * @return
      */
     public static String getMemberIdByJwtToken(HttpServletRequest request) {
         String jwtToken = request.getHeader("token");
-        if(StringUtils.isEmpty(jwtToken)) return "";
+        if (StringUtils.isEmpty(jwtToken)) return "";
         Jws<Claims> claimsJws = Jwts.parser().setSigningKey(APP_SECRET).parseClaimsJws(jwtToken);
         Claims claims = claimsJws.getBody();
-        return (String)claims.get("id");
+        return (String) claims.get("id");
     }
 
     /**
      * 根据token获取会员id
+     *
      * @param jwtToken
      * @return
      */
     public static String getMemberIdByJwtToken(String jwtToken) {
-        if(StringUtils.isEmpty(jwtToken)) return "";
+        if (StringUtils.isEmpty(jwtToken)) return "";
         Jws<Claims> claimsJws = Jwts.parser().setSigningKey(APP_SECRET).parseClaimsJws(jwtToken);
         Claims claims = claimsJws.getBody();
-        return (String)claims.get("id");
+        return (String) claims.get("id");
     }
 }

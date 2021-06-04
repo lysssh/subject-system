@@ -174,5 +174,16 @@ public class EduCourseController {
         }
         return R.ok().data("list",list);
     }
+
+    @GetMapping("collectCourse/{id}")
+    public R collectCourse(@PathVariable("id") String id) {
+        EduCourse byId = eduCourseService.getById(id);
+        byId.setBuyCount(byId.getBuyCount()+1);
+        boolean b = eduCourseService.updateById(byId);
+        if(b) {
+            return R.ok();
+        }
+        return R.error();
+    }
 }
 
