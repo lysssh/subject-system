@@ -4,16 +4,16 @@ server:
 
 #服务名称
 
-#开启熔断机制
-feign:
-  hystrix:
-    enabled: true
-    commad:
-      default:
-        execution:
-          isolation:
-            thread:
-              timeoutInMilliseconds: 6000
+##开启熔断机制
+#feign:
+#  hystrix:
+#    enabled: true
+#    commad:
+#      default:
+#        execution:
+#          isolation:
+#            thread:
+#              timeoutInMilliseconds: 6000
 
 
 #mybatis日志

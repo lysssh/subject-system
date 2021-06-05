@@ -1,19 +1,23 @@
 spring:
   cloud:
     nacos:
-      discovery:
-        server-addr: 123.56.126.244:8848
       config:
         server-addr: 123.56.126.244:8848
+        namespace: a8a8d3ed-f817-4720-afba-268a214c3271
+        ext-config:
+          - dataId: nacos-address.yml
+            refresh: true
+          - dataId: aliyun-vod.yml
+            refresh: true
   application:
     name: service-vod
   # 环境设置：dev、test、prod
   #  profiles.active: dev
   profiles:
     active: dev
-  servlet:
-    multipart:
-      # 最大上传单个文件大小：默认1M
-      max-file-size: 1024MB
-      # 最大置总上传的数据大小 ：默认10M
-      max-request-size: 1024MB
+#  servlet:
+#    multipart:
+#      # 最大上传单个文件大小：默认1M
+#      max-file-size: 1024MB
+#      # 最大置总上传的数据大小 ：默认10M
+#      max-request-size: 1024MB

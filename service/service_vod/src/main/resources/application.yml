@@ -5,11 +5,11 @@ server:
 
 
 
-  #阿里云 vod
-  #不同的服务器，地址不同
-aliyun:
-  vod:
-   file:
-     keyid: LTAI5tMUx1UayQB6TD1hy5x8
-     keysecret: nHT2yTCkdszdr1HZuMV7d85fOBPFZF
+#  #阿里云 vod
+#  #不同的服务器，地址不同
+#aliyun:
+#  vod:
+#   file:
+#     keyid: LTAI5tMUx1UayQB6TD1hy5x8
+#     keysecret: nHT2yTCkdszdr1HZuMV7d85fOBPFZF
 

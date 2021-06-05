@@ -3,32 +3,38 @@ spring:
     name: service-edu
   profiles:
     active: dev
-  redis:
-    host: 123.56.126.244
-    port: 6379
-    database: 1
-    timeout: 1800000
-    lettuce:
-      pool:
-        max-active: 20
-        max-idle: 5
-        max-wait: -1
-        min-idle: 0
-    password:
+#  redis:
+#    host: 123.56.126.244
+#    port: 6379
+#    database: 1
+#    timeout: 1800000
+#    lettuce:
+#      pool:
+#        max-active: 20
+#        max-idle: 5
+#        max-wait: -1
+#        min-idle: 0
+#    password:
   cloud:
     nacos:
-      discovery:
-        server-addr: 123.56.126.244:8848
       config:
         server-addr: 123.56.126.244:8848
-
-  #数据库连接
-  datasource:
-    driver-class-name: com.mysql.cj.jdbc.Driver
-    url: jdbc:mysql://localhost:3306/coursemanagementsystem?autoReconnect=true&useUnicode=true&characterEncoding=utf8&serverTimezone=GMT%2B8
-    username: root
-    password:
-  #返回json的全局时间格式
-  jackson:
-    date-format: yyyy-MM-dd HH:mm:ss
-    time-zone: GMT+8
+        file-extension: yaml
+        namespace: a8a8d3ed-f817-4720-afba-268a214c3271
+        ext-config:
+          - dataId: nacos-address.yml
+            refresh: true
+          - dataId: datasource.yml
+            refresh: true
+          - dataId: redis.yml
+            refresh: true
+#  #数据库连接
+#  datasource:
+#    driver-class-name: com.mysql.cj.jdbc.Driver
+#    url: jdbc:mysql://localhost:3306/coursemanagementsystem?autoReconnect=true&useUnicode=true&characterEncoding=utf8&serverTimezone=GMT%2B8
+#    username: root
+#    password:
+#  #返回json的全局时间格式
+#  jackson:
+#    date-format: yyyy-MM-dd HH:mm:ss
+#    time-zone: GMT+8

@@ -1,10 +1,14 @@
 spring:
   cloud:
     nacos:
-      discovery:
-        server-addr: 123.56.126.244:8848
       config:
         server-addr: 123.56.126.244:8848
+        namespace: a8a8d3ed-f817-4720-afba-268a214c3271
+        ext-config:
+          - dataId: nacos-address.yml
+            refresh: true
+          - dataId: aliyun-oss.yml
+            refresh: true
   application:
     name: service-oss
   profiles:
